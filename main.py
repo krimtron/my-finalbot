@@ -73,7 +73,6 @@ async def profile_menu_call(call: types.CallbackQuery):
 async def main_back_menu_call(call: types.CallbackQuery):
     await call.message.edit_text("Головне меню", reply_markup=main_keyboard.as_markup())
 
-Achievements_received = ""
 
 # ----------------------------------------------------
 
@@ -99,7 +98,6 @@ async def start_game_call(call: types.CallbackQuery):
 @dp.message()
 async def some_message(message: types.Message):
     user = get_or_create_user(message.from_user)
-    Achievements_True_False = "False"
     if not user.is_playing:
         await message.answer("Давайте пограємо в Виселица! \n Перейдіть в головне меню", reply_markup=main_back_keyboard.as_markup())
         return
@@ -192,7 +190,6 @@ async def shop_item_call(call: types.CallbackQuery):
         return
     
     if item_name == "bonus":
-        global Achievements_True_False
         bonus = randint(2, 50)
         user.balance += bonus
         user.balance -= item["price"]
